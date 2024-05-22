@@ -39,6 +39,29 @@ func bubbleSort(arr []int) []int {
 }
 ```
 
+上面原作者的实现不符合标准冒泡规则，下面是我自己写的：
+```golang
+func bubbleSort1(arr []int) []int {
+	if len(arr) < 2 {
+		return arr
+	}
+	var changed = true
+	var t = 0
+	for changed {
+		changed = false
+		for i := 0; i < len(arr)-1; i++ {
+			t++
+			fmt.Println(t, "compare arr[i], arr[i+1]: ", i, i+1, arr[i], arr[i+1])
+			if arr[i] > arr[i+1] {
+				arr[i], arr[i+1] = arr[i+1], arr[i]
+				changed = true
+			}
+		}
+
+	}
+	return arr
+}
+```
 
 
 
