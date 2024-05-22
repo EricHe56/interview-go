@@ -39,8 +39,30 @@ func bubbleSort(arr []int) []int {
 }
 ```
 
-上面原作者的实现不符合标准冒泡规则，下面是我自己写的：
+上面原作者的实现不符合标准冒泡规则，下面bubbleSort1是我自己写的。他的那个函数会循环比较64次输出结果，我们只需要42次：
 ```golang
+package main
+
+import "fmt"
+
+func bubbleSort(arr []int) []int {
+	var t = 0
+	if len(arr) == 0 {
+		return arr
+	}
+	for i := 0; i < len(arr); i++ {
+		for j := 0; j < len(arr); j++ {
+			t++
+			fmt.Println(t, "compare arr[i], arr[j]: ", i, j, arr[i], arr[j])
+			if arr[i] > arr[j] {
+				fmt.Println("arr[i] > arr[j] is True")
+				arr[j], arr[i] = arr[i], arr[j]
+			}
+		}
+	}
+	return arr
+}
+
 func bubbleSort1(arr []int) []int {
 	if len(arr) < 2 {
 		return arr
@@ -61,6 +83,13 @@ func bubbleSort1(arr []int) []int {
 	}
 	return arr
 }
+
+func main() {
+	var a = []int{1, 4, 6, 7, 8, 3, 2, 5}
+
+	fmt.Println("Hello, 世界", bubbleSort1(a))
+}
+
 ```
 
 
